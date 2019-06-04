@@ -1,0 +1,85 @@
+ public void playerBlackStrategy(){
+        
+        //leave these top 4 lines at the top
+        playerBlack = "Nick";  //put player1 name here
+        showText(playerBlack,70,100); //shows your name
+        GreenfootImage image1 = new GreenfootImage("black.png"); //sets image to black checker
+        String colorInitial = new String("b"); //fills the 2d array grid with this value
+        //replace the following code with your strategy
+        //but the second line shows you how to place your checker
+        //int colToPlace = (int)(Math.random()*7);
+         String blk = "b";
+        String red = "r";
+        int piecePlace = 0;
+        int count  = 0;
+        
+        for(int r  = 0; r < grid.length; r++)
+        {
+            count = 0;
+            for(int c = 0; c < grid[0].length; c++)
+            {
+                if(grid[r][c] == null)
+                {
+                    count  = 0;
+                }
+                else if(grid[r][c].equals(blk) || grid[r][c].equals(red))
+                {
+                    count ++;
+                }
+                
+                if(count == 2)
+                {
+                    if(c != grid[0].length - 1 && grid[0][c++] == null)
+                    {
+                        piecePlace = c++;
+                        break;
+                    }
+                    else if(grid[0][c - 2] == null)
+                    {
+                        piecePlace = c - 2;
+                        break;
+                    }
+                    else
+                    {
+                        piecePlace = (int)(Math.random()*7);
+                        break;
+                    }
+                }
+            }
+        }
+        count  = 0;
+        for(int c  = 0; c < grid[0].length; c++)
+        {
+            count = 0;
+            for(int r = 0; r < grid.length; r++)
+            {
+                if(grid[r][c] == null)
+                {
+                    count  = 0;
+                }
+                else if(grid[r][c].equals(blk) || grid[r][c].equals(red))
+                {
+                    count ++;
+                }
+                
+                if(count == 2)
+                {
+                    if(grid[0][c] == null)
+                    {
+                        piecePlace = c;
+                        break;
+                    }
+                    else
+                    {
+                        piecePlace = (int)(Math.random()*7);
+                        break;
+                    }
+                    /*piecePlace = c;
+                    break;*/
+                }
+            }
+        }
+        placeCol(piecePlace,colorInitial,image1);  //plays in the specified col and fills the 2D array with the 2nd parameter String
+
+        
+    }
